@@ -1,0 +1,6 @@
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\obj\Debug\HTTP.csproj.CoreCompileInputs.cache
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\bin\Debug\HTTP.dll
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\bin\Debug\HTTP.pdb
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\obj\Debug\HTTP.dll
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\obj\Debug\HTTP.pdb
+C:\Users\Rytis\Desktop\Projects\HTTPClient\ClassLibrary1\obj\Debug\HTTP.csprojResolveAssemblyReference.cache
