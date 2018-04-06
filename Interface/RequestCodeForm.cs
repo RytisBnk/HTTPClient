@@ -16,7 +16,10 @@ namespace HTTPClient
         public RequestCodeForm(Request request)
         {
             InitializeComponent();
-            request_text.Text = request.ToString();
+            if (request != null)
+            {
+                request_text.Text = request.ToString();
+            }        
         }
     }
 }

@@ -9,7 +9,7 @@ namespace HTTP
 {
     public class Response
     {
-        public int StatusCode { get; private set; }
+        public string StatusCode { get; private set; }
         public string StatusMessage { get; private set; }
         public List<Header> Headers { get; private set; }
         public string Body { get; private set; }
@@ -42,7 +42,7 @@ namespace HTTP
 
             var statusCodeStartPosition = Regex.Match(responseText, "[0-9]{3}").Index;
             var statusCodeEndPosition = Regex.Match(responseText, "\r\n").Index;
-            StatusCode = int.Parse(responseText.Substring(statusCodeStartPosition, 3));
+            StatusCode = responseText.Substring(statusCodeStartPosition, statusCodeEndPosition - statusCodeStartPosition);
 
             GetStatusMessage();
         }

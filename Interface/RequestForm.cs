@@ -30,6 +30,7 @@ namespace HTTPClient
         public RequestForm()
         {
             InitializeComponent();
+            StatusCode.Test();
         }
 
         private void button_showBody_Click(object sender, EventArgs e)
@@ -182,7 +183,7 @@ namespace HTTPClient
 
         private void button_status_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = _response.StatusCode.ToString();
+            richTextBox1.Text = _response.StatusCode;
         }
     }
 }
