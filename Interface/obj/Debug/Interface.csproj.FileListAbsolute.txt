@@ -22,3 +22,7 @@ C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\Interface.csproj.
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\Interface.csproj.CoreCompileInputs.cache
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.exe
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.pdb
+C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.HeadersForm.resources
+C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.RequestCodeForm.resources
+C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.BodyForm.resources
+C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.AuthenticationForm.resources

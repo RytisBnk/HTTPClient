@@ -10,11 +10,15 @@ namespace HTTP
 {
     public class AuthHeader : Header
     {
-        public AuthHeader(string username, string password) 
+        public AuthHeader(string loginCredentials) 
+            : base()
         {
-            // encode to 64 bit and return an AuthHeader
+            // encode to base64 and return an AuthHeader
+            var bytes = Encoding.UTF8.GetBytes(loginCredentials);
+            var encodedCredentials = System.Convert.ToBase64String(bytes);
 
-            
+            Name = "Authorization";
+            Value = "Basic " + encodedCredentials;
         }
     }
 }
