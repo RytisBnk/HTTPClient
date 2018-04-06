@@ -49,7 +49,14 @@ namespace HTTP
 
         private void GetStatusMessage()
         {
+            Dictionary<string, string> statusCodes = StatusCodes.GetStatusCodesList();
+            var statusCodeNumber = StatusCode.Substring(0, 3);
 
+            var correspondingCodeMessage = statusCodes.Where(c => c.Key == statusCodeNumber);
+            if (correspondingCodeMessage.Any())
+            {
+                StatusMessage = correspondingCodeMessage.First().Value;
+            }
         }
     }
 }

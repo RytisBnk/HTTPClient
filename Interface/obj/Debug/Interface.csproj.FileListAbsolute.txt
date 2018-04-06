@@ -28,3 +28,4 @@ C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.BodyFo
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\obj\Debug\HTTPClient.AuthenticationForm.resources
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Rytis\Desktop\Projects\HTTPClient\Interface\bin\Debug\StatusCodes.json

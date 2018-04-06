@@ -18,19 +18,20 @@ namespace HTTPClient
     {
         public string Data { get; set; }
         public List<Header> Headers { get; set; }
-        public Request CurrentRequest { get; set; }
-        public Request PreviousRequest { get; set; }
+
         public string Credentials { get; set; }
 
         private Response _response;
         private string _rawResponse;
         private string _hostName;
         private string _resource;
+        private Request _currentRequest;
+        private Request _previousRequest;
 
         public RequestForm()
         {
             InitializeComponent();
-            StatusCode.Test();
+            StatusCodes.GetStatusCodesList();
         }
 
         private void button_showBody_Click(object sender, EventArgs e)
@@ -56,10 +57,10 @@ namespace HTTPClient
 
         private void send_button_Click(object sender, EventArgs e)
         {
-            CurrentRequest = BuildHttpRequest();
+            _currentRequest = BuildHttpRequest();
 
             var httpConnection = new Connection(_hostName, 80);
-            _rawResponse = httpConnection.ExecuteRequest(CurrentRequest);
+            _rawResponse = httpConnection.ExecuteRequest(_currentRequest);
 
             _response = new Response(_rawResponse);
             richTextBox1.Text = _response.Body;
@@ -81,18 +82,18 @@ namespace HTTPClient
 
         private void button_viewRequest_Click(object sender, EventArgs e)
         {
-            CurrentRequest = BuildHttpRequest();
-            var requestViewForm = new RequestCodeForm(CurrentRequest);
+            _currentRequest = BuildHttpRequest();
+            var requestViewForm = new RequestCodeForm(_currentRequest);
             requestViewForm.Show();
         }
 
         private void ClearAfterSend()
         {
-            PreviousRequest = CurrentRequest;
+            _previousRequest = _currentRequest;
             Data = null;
             Headers = null;
             Credentials = null;
-            CurrentRequest = null;
+            _currentRequest = null;
         }
 
         private Request BuildHttpRequest()
@@ -177,13 +178,13 @@ namespace HTTPClient
 
         private void button_viewPrevious_Click(object sender, EventArgs e)
         {
-            var requestViewForm = new RequestCodeForm(PreviousRequest);
+            var requestViewForm = new RequestCodeForm(_previousRequest);
             requestViewForm.Show();
         }
 
         private void button_status_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = _response.StatusCode;
+            richTextBox1.Text = _response.StatusCode + "\r\n" + _response.StatusMessage;
         }
     }
 }

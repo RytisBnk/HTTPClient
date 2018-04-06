@@ -6,19 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace HTTP
 {
-    public class StatusCode
+    public class StatusCodes
     {
-        public static void Test()
+        public static Dictionary<string, string> GetStatusCodesList()
         {
-            byte[] file = File.ReadAllBytes("StatusCodes.json");
+            var address = Assembly.GetExecutingAssembly().Location;
+            var path = Path.GetDirectoryName(address);
 
+            byte[] file = File.ReadAllBytes(path + "\\StatusCodes.json");
             string jsonString = Encoding.UTF8.GetString(file);
-            jsonString = jsonString.Replace("\r\n\t", "");
             Dictionary<string, string> statusCodes = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonString);
+
+            return statusCodes;
         }
-        
     }
 }
