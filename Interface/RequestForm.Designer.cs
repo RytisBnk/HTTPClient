@@ -133,6 +133,7 @@
             this.method_selector.FormattingEnabled = true;
             this.method_selector.Items.AddRange(new object[] {
             "GET",
+            "HEAD",
             "POST",
             "PUT",
             "DELETE",

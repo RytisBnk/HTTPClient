@@ -15,7 +15,8 @@ namespace HTTP
         PUT,
         DELETE, 
         OPTIONS,
-        TRACE
+        TRACE,
+        HEAD
     }
 
     public static class MethodResolver
@@ -45,6 +46,10 @@ namespace HTTP
             else if (Regex.IsMatch(methodName, "[Tt][Rr][Aa][Cc][Ee]"))
             {
                 return Method.TRACE;
+            }
+            else if (Regex.IsMatch(methodName, "[Hh][Ee][Aa][Dd]"))
+            {
+                return Method.HEAD;
             }
             else throw new ArgumentException("Argument must be an HTTP method");
         }
