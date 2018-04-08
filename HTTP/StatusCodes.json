@@ -16,7 +16,7 @@
 	"305": "The requested resource MUST be accessed through the proxy given by the Location field.",
 	"307": "The requested resource resides temporarily under a different URI. Since the redirection MAY be altered on occasion, the client SHOULD continue to use the Request-URI for future requests.",
 	"400": "The request could not be understood by the server due to malformed syntax.",
-	"401": "The request requires user authentication.",
+	"401": "No user authentication was provided or the provided credentials were not accepted.",
 	"403": " The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated.",
 	"404": "The server has not found anything matching the Request-URI.",
 	"405": "The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",

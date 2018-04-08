@@ -10,9 +10,9 @@ using System.Reflection;
 
 namespace HTTP
 {
-    public class StatusCodes
+    internal class StatusCodes
     {
-        public static Dictionary<string, string> GetStatusCodesList()
+        internal static Dictionary<string, string> GetStatusCodesList()
         {
             var address = Assembly.GetExecutingAssembly().Location;
             var path = Path.GetDirectoryName(address);

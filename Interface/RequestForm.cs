@@ -31,7 +31,6 @@ namespace HTTPClient
         public RequestForm()
         {
             InitializeComponent();
-            StatusCodes.GetStatusCodesList();
         }
 
         private void button_showBody_Click(object sender, EventArgs e)
@@ -63,7 +62,14 @@ namespace HTTPClient
             _rawResponse = httpConnection.ExecuteRequest(_currentRequest);
 
             _response = new Response(_rawResponse);
-            richTextBox1.Text = _response.Body;
+            if (_response.Body[0] != '\0')
+            {
+                richTextBox1.Text = _response.Body;
+            }
+            else
+            {
+                richTextBox1.Text = _response.StatusCode + "\r\n" + _response.StatusMessage;
+            }
 
             ClearAfterSend();
         }
@@ -110,62 +116,23 @@ namespace HTTPClient
             if (Data != null)
             {
                 httpRequest.Body = Data;
-                Header contentLength = new Header("Content-Length", Data.Length.ToString());
-                if (Headers != null)
-                {
-                    var zeroContentHeader = Headers.Where(h => h.Name == "Content-Length" && h.Value == "0");
-                    if (!Headers.Exists(h => h.Name == "Content-Length"))
-                    {
-                        Headers.Add(contentLength);
-                    }
-                    else if (zeroContentHeader.Any())
-                    {
-                        Headers.Remove(zeroContentHeader.First());
-                        Headers.Add(contentLength);
-                    }
-                }
-                else
-                {
-                    Headers = new List<Header>
-                    {
-                        contentLength
-                    };
-                }
+                httpRequest.AddHeader("Content-Length", Data.Length.ToString());
             }
             else
             {
-                if (Headers != null)
-                {
-                    if (!Headers.Exists(h => h.Name == "Content-Length"))
-                    {
-                        Headers.Add(new Header("Content-Length", "0"));
-                    }
-                }
-                else
-                {
-                    Headers = new List<Header>()
-                    {
-                        new Header("Content-Length", "0")
-                    };
-                }
+                httpRequest.AddHeader("Content-Length", "0");
             }
             
             if (Credentials != null)
             {
                 var authHeader = new AuthHeader(Credentials);
-                var existingHeader = Headers.Where(h => h.Name == "Authorization");
-                if (!existingHeader.Any())
-                {
-                    Headers.Add(authHeader);
-                }
-                else 
-                {
-                    Headers.Remove(existingHeader.First());
-                    Headers.Add(authHeader);
-                }
+                httpRequest.AddHeader(authHeader);
             }
 
-            httpRequest.Headers = Headers;
+            if (Headers != null)
+            {
+                httpRequest.AddMultipleHeaders(Headers);
+            }
 
             return httpRequest;
         }

@@ -61,6 +61,42 @@ namespace HTTP
             }
         }
 
+        public void AddMultipleHeaders(ICollection<Header> headers)
+        {
+            foreach (var header in headers)
+            {
+                AddHeader(header);
+            }
+        }
+
+        public void AddHeader(Header header)
+        {
+            if (Headers == null)
+            {
+                Headers = new List<Header>()
+                {
+                    header
+                };
+            }
+            else
+            {
+                var searchQuery = Headers.Where(h => h.Name == header.Name);
+                if (searchQuery.Any())
+                {
+                    searchQuery.First().Value = header.Value;
+                }
+                else
+                {
+                    Headers.Add(header);
+                }
+            }
+        }
+
+        public void AddHeader(string name, string value)
+        {
+            AddHeader(new Header(name, value));
+        }
+
         public override string ToString()
         {
             var requestString = new StringBuilder(Method + " " + Resource + " " + _protocolVersion + "\r\n");
