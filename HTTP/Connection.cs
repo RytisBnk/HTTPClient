@@ -19,7 +19,7 @@ namespace HTTP
             HostEndPoint = new IPEndPoint(hostAddress, port);
         }
 
-        public string ExecuteRequest(Request request)
+        public Response ExecuteRequest(Request request)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(HostEndPoint);
@@ -32,7 +32,8 @@ namespace HTTP
 
             socket.Close();
 
-            return Encoding.UTF8.GetString(buffer);
+            var responseText = Encoding.UTF8.GetString(buffer);
+            return new Response(responseText);
         }
     }
 }

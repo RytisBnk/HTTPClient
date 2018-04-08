@@ -22,7 +22,6 @@ namespace HTTPClient
         public string Credentials { get; set; }
 
         private Response _response;
-        private string _rawResponse;
         private string _hostName;
         private string _resource;
         private Request _currentRequest;
@@ -51,7 +50,7 @@ namespace HTTPClient
 
         private void button_showRawView_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text = _rawResponse;
+            richTextBox1.Text = _response.ToString();
         }
 
         private void send_button_Click(object sender, EventArgs e)
@@ -59,9 +58,7 @@ namespace HTTPClient
             _currentRequest = BuildHttpRequest();
 
             var httpConnection = new Connection(_hostName, 80);
-            _rawResponse = httpConnection.ExecuteRequest(_currentRequest);
-
-            _response = new Response(_rawResponse);
+            _response = httpConnection.ExecuteRequest(_currentRequest);
             if (_response.Body[0] != '\0')
             {
                 richTextBox1.Text = _response.Body;

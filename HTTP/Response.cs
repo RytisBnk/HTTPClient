@@ -15,8 +15,12 @@ namespace HTTP
         public string Body { get; private set; }
         public string HeadersText { get; private set; }
 
+        private string _rawResponse;
+
         public Response(string responseText)
         {
+            _rawResponse = responseText; 
+
             var bodyPosition =  Regex.Match(responseText, "\r\n\r\n").Index + 4;
             Body = responseText.Substring(bodyPosition);
 
@@ -57,6 +61,11 @@ namespace HTTP
             {
                 StatusMessage = correspondingCodeMessage.First().Value;
             }
+        }
+
+        public override string ToString()
+        {
+            return _rawResponse;
         }
     }
 }
